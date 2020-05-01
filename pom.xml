@@ -10,7 +10,7 @@
 
     <groupId>ca.vanzyl.concord</groupId>
     <artifactId>concord-maven-plugin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>takari-maven-plugin</packaging>
 
     <name>Concord Maven Build Extension</name>
@@ -110,4 +110,8 @@
             </resource>
         </resources>
     </build>
+
+  <scm>
+    <tag>concord-maven-plugin-0.0.1</tag>
+  </scm>
 </project>
