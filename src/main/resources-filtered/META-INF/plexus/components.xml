@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-set>
+    <components>
+        <component>
+            <role>org.apache.maven.artifact.handler.ArtifactHandler</role>
+            <role-hint>concord-plugin</role-hint>
+            <implementation>org.apache.maven.artifact.handler.DefaultArtifactHandler</implementation>
+            <configuration>
+                <type>concord-plugin</type>
+                <extension>zip</extension>
+                <language>java</language>
+                <addedToClasspath>false</addedToClasspath>
+            </configuration>
+        </component>
+
+        <component>
+            <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+            <role-hint>concord-plugin</role-hint>
+            <implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping</implementation>
+            <configuration>
+                <lifecycles>
+                    <lifecycle>
+                        <id>default</id>
+                        <phases>
+                          <process-resources>
+                            io.takari.maven.plugins:takari-lifecycle-plugin:${takariLifecyclePluginVersion}:process-resources
+                          </process-resources>
+                          <compile>
+                            io.takari.maven.plugins:takari-lifecycle-plugin:${takariLifecyclePluginVersion}:compile
+                          </compile>
+                          <process-test-resources>
+                            io.takari.maven.plugins:takari-lifecycle-plugin:${takariLifecyclePluginVersion}:process-test-resources
+                          </process-test-resources>
+                          <test-compile>
+                            io.takari.maven.plugins:takari-lifecycle-plugin:${takariLifecyclePluginVersion}:testCompile
+                          </test-compile>
+                          <test>org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test</test>
+                          <package>
+                              io.takari.maven.plugins:takari-lifecycle-plugin:${takariLifecyclePluginVersion}:jar,
+                              ca.vanzyl.provisio.maven.plugins:provisio-maven-plugin:${provisioVersion}:provision
+                          </package>
+                          <install>io.takari.maven.plugins:takari-lifecycle-plugin:${takariLifecyclePluginVersion}:install</install>
+                          <deploy>io.takari.maven.plugins:takari-lifecycle-plugin:${takariLifecyclePluginVersion}:deploy</deploy>
+                        </phases>
+                    </lifecycle>
+                </lifecycles>
+            </configuration>
+        </component>
+    </components>
+</component-set>
