@@ -5,29 +5,25 @@
     <parent>
         <groupId>io.takari</groupId>
         <artifactId>takari</artifactId>
-        <version>27</version>
+        <version>47</version>
     </parent>
 
     <groupId>ca.vanzyl.concord</groupId>
     <artifactId>concord-maven-plugin</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <packaging>takari-maven-plugin</packaging>
 
     <name>Concord Maven Build Extension</name>
     <description>The Concord Maven Plugin provides a packing and lifecycle for Concord plugins</description>
 
     <properties>
-        <mavenVersion>3.2.3</mavenVersion>
+        <mavenVersion>3.8.6</mavenVersion>
         <mavenPluginPluginVersion>3.2</mavenPluginPluginVersion>
-        <provisioVersion>1.0.8</provisioVersion>
-        <takari.javaSourceVersion>1.8</takari.javaSourceVersion>
-        <!-- declare language version for IntelliJ IDEA -->
-        <maven.compiler.source>${takari.javaSourceVersion}</maven.compiler.source>
-        <maven.compiler.target>${takari.javaSourceVersion}</maven.compiler.target>
+        <provisioVersion>1.0.19</provisioVersion>
     </properties>
 
     <prerequisites>
-        <maven>[3.2.1,)</maven>
+        <maven>[3.8.6,)</maven>
     </prerequisites>
 
     <dependencies>
