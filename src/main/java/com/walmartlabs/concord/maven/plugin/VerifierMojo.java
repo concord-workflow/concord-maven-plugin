@@ -67,7 +67,7 @@ public class VerifierMojo extends AbstractMojo {
             """;
 
             String deps = scopeViolations.stream()
-                    .map(d -> " * " + d)
+                    .map(v -> " * " + v.dependency())
                     .collect(Collectors.joining("\n"));
 
             getLog().warn(header + "\n" + deps + "\n");

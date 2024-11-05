@@ -42,7 +42,6 @@ public class DependencyVerifierTest {
         assertInstanceOf(ScopeViolation.class, violations.get(0));
         ScopeViolation violation = (ScopeViolation) violations.get(0);
         assertEquals("compile", violation.dependency().scope());
-        assertEquals("provided", violation.expectedScope());
     }
 
     @Test

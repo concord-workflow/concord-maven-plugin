@@ -27,7 +27,7 @@ public class DependencyVerifier {
                     Dependency runtimeDep = DependencyUtils.find(runtimeDependencies, dep.groupId(), dep.artifactId());
                     return runtimeDep != null && !DependencyUtils.isProvided(runtimeDep) && !DependencyUtils.isProvided(dep);
                 })
-                .map(dep -> new ScopeViolation(dep, "provided"))
+                .map(ScopeViolation::new)
                 .toList();
     }
 
