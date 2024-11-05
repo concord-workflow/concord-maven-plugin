@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Mojo to list dependencies with versions and scopes, including external artifacts.
- */
 @Mojo(name = "verify", defaultPhase = LifecyclePhase.COMPILE)
 public class VerifierMojo extends AbstractMojo {
 
