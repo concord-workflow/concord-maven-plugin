@@ -1,0 +1,7 @@
+.idea/
+*.iml
+.DS_Store
+target/
+*.tgz
+*.tar.gz
+pom.xml.versionsBackup
