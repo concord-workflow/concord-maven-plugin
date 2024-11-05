@@ -1,40 +1,31 @@
 package com.walmartlabs.concord.maven.plugin;
 
 import org.apache.maven.execution.MavenSession;
-
-import org.apache.maven.project.MavenProject;
 import org.eclipse.aether.RepositorySystem;
-import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
-import org.eclipse.aether.resolution.*;
+import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
 
 import javax.inject.Inject;
 import java.util.List;
 
 public class DependencyResolver {
 
-    private final MavenProject project;
     private final RepositorySystem repositorySystem;
     private final MavenSession session;
 
     @Inject
-    public DependencyResolver(MavenProject project, RepositorySystem repositorySystem, MavenSession session) {
-        this.project = project;
+    public DependencyResolver(RepositorySystem repositorySystem, MavenSession session) {
         this.repositorySystem = repositorySystem;
         this.session = session;
     }
 
     public List<Dependency> resolve(String groupId, String artifactId, String version) {
-        MavenProject project = session.getCurrentProject();
+        var request = new ArtifactDescriptorRequest()
+                .setArtifact(new DefaultArtifact(groupId, artifactId, "", "jar", version))
+                .setRepositories(session.getCurrentProject().getRemoteProjectRepositories());
 
-        Artifact externalArtifact = new DefaultArtifact(
-                groupId, artifactId, "", "jar", version);
-
-        ArtifactDescriptorRequest request = new ArtifactDescriptorRequest();
-        request.setArtifact(externalArtifact);
-        request.setRepositories(project.getRemoteProjectRepositories());
         try {
-            ArtifactDescriptorResult result = repositorySystem.readArtifactDescriptor(session.getRepositorySession(), request);
+            var result = repositorySystem.readArtifactDescriptor(session.getRepositorySession(), request);
             return result.getDependencies().stream()
                     .map(DependencyResolver::toDependency)
                     .toList();
@@ -44,7 +35,7 @@ public class DependencyResolver {
     }
 
     public List<Dependency> resolveCurrent() {
-        return project.getDependencies().stream()
+        return session.getCurrentProject().getDependencies().stream()
                 .map(DependencyResolver::toDependency)
                 .toList();
     }

@@ -18,10 +18,10 @@ public class DependencyVerifierTest {
 
     @Test
     public void testInvalidVersion() {
-        Dependency projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "provided");
-        Dependency runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.18.1-SNAPSHOT", "compile");
+        var projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "provided");
+        var runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.18.1-SNAPSHOT", "compile");
 
-        List<Violation> violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
+        var violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
 
         assertEquals(1, violations.size());
         assertInstanceOf(VersionViolation.class, violations.get(0));
@@ -33,10 +33,10 @@ public class DependencyVerifierTest {
 
     @Test
     public void testInvalidScope() {
-        Dependency projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "compile");
-        Dependency runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "compile");
+        var projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "compile");
+        var runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "compile");
 
-        List<Violation> violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
+        var violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
 
         assertEquals(1, violations.size());
         assertInstanceOf(ScopeViolation.class, violations.get(0));
@@ -46,20 +46,20 @@ public class DependencyVerifierTest {
 
     @Test
     public void testNoViolations() {
-        Dependency projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.18.1-SNAPSHOT", "provided");
-        Dependency runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.18.1-SNAPSHOT", "compile");
+        var projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.18.1-SNAPSHOT", "provided");
+        var runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.18.1-SNAPSHOT", "compile");
 
-        List<Violation> violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
+        var violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
 
         assertTrue(violations.isEmpty());
     }
 
     @Test
     public void testScopeAndVersion() {
-        Dependency projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.16.0", "compile");
-        Dependency runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "compile");
+        var projectDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.16.0", "compile");
+        var runtimeDependency = new Dependency("com.walmartlabs.concord", "concord-sdk", "2.17.0", "compile");
 
-        List<Violation> violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
+        var violations = verifier.verify(List.of(projectDependency), List.of(runtimeDependency));
 
         assertEquals(2, violations.size());
     }

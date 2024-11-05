@@ -35,13 +35,13 @@ public class DependencyVerifier {
         return projectDependencies.stream()
                 .filter(dep -> !DependencyUtils.isTest(dep))
                 .map(dep -> {
-                    Dependency runtimeDep = DependencyUtils.find(runtimeDependencies, dep.groupId(), dep.artifactId());
+                    var runtimeDep = DependencyUtils.find(runtimeDependencies, dep.groupId(), dep.artifactId());
                     if (runtimeDep == null) {
                         return null;
                     }
 
-                    DefaultArtifactVersion depVersion = new DefaultArtifactVersion(dep.version());
-                    DefaultArtifactVersion runtimeDepVersion = new DefaultArtifactVersion(runtimeDep.version());
+                    var depVersion = new DefaultArtifactVersion(dep.version());
+                    var runtimeDepVersion = new DefaultArtifactVersion(runtimeDep.version());
                     if (depVersion.compareTo(runtimeDepVersion) != 0) {
                         return new VersionViolation(dep, runtimeDep.version());
                     }

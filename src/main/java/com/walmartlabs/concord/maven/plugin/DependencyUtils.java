@@ -2,16 +2,13 @@ package com.walmartlabs.concord.maven.plugin;
 
 import java.util.List;
 
-import static org.apache.maven.artifact.Artifact.*;
+import static org.apache.maven.artifact.Artifact.SCOPE_PROVIDED;
+import static org.apache.maven.artifact.Artifact.SCOPE_TEST;
 
 public final class DependencyUtils {
 
     public static boolean isTest(Dependency dependency) {
         return SCOPE_TEST.equalsIgnoreCase(dependency.scope());
-    }
-
-    public static boolean isCompile(Dependency dependency) {
-        return SCOPE_COMPILE.equalsIgnoreCase(dependency.scope());
     }
 
     public static boolean isProvided(Dependency dependency) {
