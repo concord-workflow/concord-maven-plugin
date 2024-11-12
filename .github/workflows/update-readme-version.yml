@@ -15,10 +15,6 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      - name: Get latest release tag
-        id: get_release
-        run: echo "::set-output name=version::${GITHUB_REF##*/}"
-
       - name: Update README.md
         run: |
           sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ steps.get_release.outputs.version }}/g" README.md
@@ -30,15 +26,15 @@ jobs:
 
       - name: Create a new branch
         run: |
-          git checkout -b update-readme-${{ steps.get_release.outputs.version }}
+          git checkout -b update-readme-${{ github.event.release.tag_name }}
           git add README.md
-          git commit -m "Update README with latest release version ${{ steps.get_release.outputs.version }}"
-          git push origin update-readme-${{ steps.get_release.outputs.version }}
+          git commit -m "Update README with latest release version ${{ github.event.release.tag_name }}"
+          git push origin update-readme-${{ github.event.release.tag_name }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          branch: update-readme-${{ steps.get_release.outputs.version }}
-          title: Update README with latest release version ${{ steps.get_release.outputs.version }}
+          branch: update-readme-${{ github.event.release.tag_name }}
+          title: Update README with latest release version ${{ github.event.release.tag_name }}
           body: Automatically generated update for the latest release version in README.
           base: main
