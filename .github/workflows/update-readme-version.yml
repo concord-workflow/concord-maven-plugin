@@ -31,5 +31,5 @@ jobs:
         run: |
           PR_NUMBER=${{ steps.cpr.outputs.pull-request-number }}
           gh auth login --with-token <<< "${{ secrets.PAT_TOKEN }}"
-          gh pr review --approve $PR_NUMBER
-          gh pr merge $PR_NUMBER --admin --squash
+          gh pr review --approve $PR_NUMBER --repo concord-workflow/concord-maven-plugin-ng
+          gh pr merge $PR_NUMBER --admin --squash --repo concord-workflow/concord-maven-plugin-ng
