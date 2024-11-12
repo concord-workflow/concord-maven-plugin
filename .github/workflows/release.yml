@@ -13,17 +13,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: 17
-          server-id: ossrh
-          server-username: OSSRH_USERNAME
-          server-password: OSSRH_PASSWORD
-          gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
-          gpg-passphrase: OSSRH_GPG_SECRET_KEY_PASSWORD
-          cache: 'maven'
+#      - name: Set up JDK
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: 17
+#          server-id: ossrh
+#          server-username: OSSRH_USERNAME
+#          server-password: OSSRH_PASSWORD
+#          gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+#          gpg-passphrase: OSSRH_GPG_SECRET_KEY_PASSWORD
+#          cache: 'maven'
 
       - name: Get Tag Name
         run: echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV

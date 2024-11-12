@@ -14,11 +14,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.release.tag_name }}
-          path: repo
 
       - name: Update README.md
         run: |
-          cd repo && sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ github.event.release.tag_name }}/g" README.md
+          sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ github.event.release.tag_name }}/g" README.md
 
       - name: Configure Git
         run: |
@@ -27,7 +26,6 @@ jobs:
 
       - name: Create a new branch
         run: |
-          cd repo
           git checkout -b update-readme-${{ github.event.release.tag_name }}
           git add README.md
           git commit -m "Update README with latest release version ${{ github.event.release.tag_name }}"
@@ -36,7 +34,6 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          path: repo
           branch: update-readme-${{ github.event.release.tag_name }}
           title: Update README with latest release version ${{ github.event.release.tag_name }}
           body: Automatically generated update for the latest release version in README.
