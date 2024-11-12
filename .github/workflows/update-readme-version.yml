@@ -29,8 +29,6 @@ jobs:
           base: main
 
       - name: Approve and Merge Pull Request
-        env:
-          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           PR_NUMBER=${{ steps.cpr.outputs.pull-request-number }}
           gh auth login --with-token <<< "${{ secrets.PAT_TOKEN }}"
