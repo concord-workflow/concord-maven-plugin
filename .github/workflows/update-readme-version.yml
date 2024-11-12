@@ -2,7 +2,7 @@ name: update-readme-version
 
 on:
   release:
-    types: [published]
+    types: [prereleased, released, published]
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          ref: 'main'
+          ref: ${{ github.event.release.tag_name }}
 
       - name: Get latest release tag
         id: get_release
