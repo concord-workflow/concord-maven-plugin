@@ -20,6 +20,7 @@ jobs:
           sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ github.event.release.tag_name }}/g" README.md
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           branch: update-readme-${{ github.event.release.tag_name }}
@@ -27,8 +28,10 @@ jobs:
           body: Automatically generated update for the latest release version in README.
           base: main
 
-      - name: Enable Auto-Merge
-        uses: peter-evans/enable-pull-request-automerge@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.create-pull-request.outputs.pull-request-number }}
+      - name: perform the merge
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        shell: bash
+        run: |
+          gh pr review --approve ${{ steps.cpr.outputs.pull-request-number }}
+          gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --admin --squash
