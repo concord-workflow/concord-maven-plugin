@@ -28,12 +28,12 @@ jobs:
       - name: Get Tag Name
         run: echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-      - name: Deploy
-        run: ./mvnw -B clean deploy -P sign --no-transfer-progress --batch-mode
-        env:
-          OSSRH_GPG_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+#      - name: Deploy
+#        run: ./mvnw -B clean deploy -P sign --no-transfer-progress --batch-mode
+#        env:
+#          OSSRH_GPG_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+#          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+#          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
       - name: Create Release
         id: create_release
