@@ -28,10 +28,11 @@ jobs:
           body: Automatically generated update for the latest release version in README.
           base: main
 
-      - name: perform the merge
+      - name: Approve and Merge Pull Request
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
-        shell: bash
         run: |
-          gh pr review --approve ${{ steps.cpr.outputs.pull-request-number }}
-          gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --admin --squash
+          PR_NUMBER=${{ steps.cpr.outputs.pull-request-number }}
+          gh auth login --with-token <<< "${{ secrets.PAT_TOKEN }}"
+          gh pr review --approve $PR_NUMBER
+          gh pr merge $PR_NUMBER --admin --squash
