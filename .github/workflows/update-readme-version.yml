@@ -1,8 +1,10 @@
+name: update-readme-version
+
 on:
   release:
     types: [published]
   workflow_dispatch:
-    
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest
