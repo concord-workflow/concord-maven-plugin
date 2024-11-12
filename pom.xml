@@ -64,6 +64,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.eclipse.sisu</groupId>
+            <artifactId>org.eclipse.sisu.inject</artifactId>
+            <version>0.9.0.M3</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
             <version>${maven.version}</version>
@@ -80,6 +86,17 @@
             <artifactId>maven-plugin-annotations</artifactId>
             <version>${maven.plugin.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sonatype.plexus</groupId>
+            <artifactId>plexus-build-api</artifactId>
+            <version>0.0.7</version>
         </dependency>
 
         <dependency>
@@ -123,17 +140,32 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.eclipse.sisu</groupId>
-                <artifactId>sisu-maven-plugin</artifactId>
-                <version>0.3.5</version>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.14</version>
                 <executions>
                     <execution>
-                        <id>generate-index</id>
+                        <id>first</id>
                         <goals>
-                            <goal>main-index</goal>
+                            <goal>update-file-header</goal>
                         </goals>
+                        <phase>process-sources</phase>
                     </execution>
                 </executions>
+                <configuration>
+                    <verbose>false</verbose>
+                    <licenseName>apache_v2</licenseName>
+                    <organizationName>Concord Authors</organizationName>
+                    <projectName>Concord</projectName>
+                    <inceptionYear>2020</inceptionYear>
+                    <processStartTag>*****</processStartTag>
+                    <sectionDelimiter>-----</sectionDelimiter>
+                    <processEndTag>=====</processEndTag>
+                    <roots>
+                        <root>src/main/java</root>
+                        <root>src/test/java</root>
+                    </roots>
+                </configuration>
             </plugin>
         </plugins>
     </build>

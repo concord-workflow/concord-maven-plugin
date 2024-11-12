@@ -21,16 +21,16 @@ Include the plugin in your project's `pom.xml` file:
         <plugin>
             <groupId>dev.ybrig.concord</groupId>
             <artifactId>concord-maven-plugin-ng</artifactId>
-            <version><LATEST_RELEASE_VERSION_HERE></version>
+            <version>LATEST_RELEASE_VERSION_HERE</version>
+            <configuration>
+                <concordVersion>${concord.version}</concordVersion>
+            </configuration>
             <executions>
                 <execution>
-                    <id>verify</id>
                     <goals>
+                        <goal>sisu-index</goal>
                         <goal>verify</goal>
                     </goals>
-                    <configuration>
-                        <concordVersion>2.18.1-SNAPSHOT</concordVersion>
-                    </configuration>
                 </execution>
             </executions>
         </plugin>
