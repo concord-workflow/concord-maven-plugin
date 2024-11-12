@@ -2,7 +2,7 @@ name: update-readme-version
 
 on:
   release:
-    types: [prereleased, released, published]
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
 
       - name: Update README.md
         run: |
-          sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ steps.get_release.outputs.version }}/g" README.md
+          sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ github.event.release.tag_name }}/g" README.md
 
       - name: Configure Git
         run: |
