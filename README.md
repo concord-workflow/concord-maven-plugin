@@ -21,7 +21,7 @@ Include the plugin in your project's `pom.xml` file:
         <plugin>
             <groupId>dev.ybrig.concord</groupId>
             <artifactId>concord-maven-plugin-ng</artifactId>
-            <version>LATEST_RELEASE_VERSION_HERE</version>
+            <version><LATEST_RELEASE_VERSION_HERE></version>
             <configuration>
                 <concordVersion>${concord.version}</concordVersion>
             </configuration>
