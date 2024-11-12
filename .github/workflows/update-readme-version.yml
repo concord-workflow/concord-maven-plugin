@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Get latest release tag
         id: get_release
@@ -21,10 +21,22 @@ jobs:
         run: |
           sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ steps.get_release.outputs.version }}/g" README.md
 
-      - name: Commit and push changes
+      - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create a new branch
+        run: |
+          git checkout -b update-readme-${{ steps.get_release.outputs.version }}
           git add README.md
           git commit -m "Update README with latest release version ${{ steps.get_release.outputs.version }}"
-          git push
+          git push origin update-readme-${{ steps.get_release.outputs.version }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: update-readme-${{ steps.get_release.outputs.version }}
+          title: Update README with latest release version ${{ steps.get_release.outputs.version }}
+          body: Automatically generated update for the latest release version in README.
+          base: main
