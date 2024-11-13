@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.ybrig.concord</groupId>
-    <artifactId>concord-maven-plugin-ng</artifactId>
+    <artifactId>concord-maven-plugin</artifactId>
 
     <version>0.0.30-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
@@ -33,9 +33,9 @@
     </developers>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/concord-workflow/concord-maven-plugin-ng.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/concord-workflow/concord-maven-plugin.git</developerConnection>
         <tag>HEAD</tag>
-        <url>https://github.com/concord-workflow/concord-maven-plugin-ng</url>
+        <url>https://github.com/concord-workflow/concord-maven-plugin</url>
     </scm>
 
     <distributionManagement>
