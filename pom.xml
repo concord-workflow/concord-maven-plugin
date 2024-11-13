@@ -6,7 +6,7 @@
     <groupId>dev.ybrig.concord</groupId>
     <artifactId>concord-maven-plugin</artifactId>
 
-    <version>0.0.30</version>
+    <version>0.0.31-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>Concord Maven plugin</name>
@@ -34,7 +34,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/concord-workflow/concord-maven-plugin.git</developerConnection>
-        <tag>0.0.30</tag>
+        <tag>HEAD</tag>
         <url>https://github.com/concord-workflow/concord-maven-plugin</url>
     </scm>
 
