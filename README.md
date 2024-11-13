@@ -44,11 +44,11 @@ If violations are detected, the plugin will produce warnings in the following fo
 
 ```plaintext
 [WARNING] The dependency 'com.walmartlabs.concord:concord-sdk:2.17.0' has an invalid version.
-          Expected version: '2.18.0'. Please update the version in your POM to match the required version.
+          Expected version: '2.19.0'. Please update the version in your POM to match the required version.
 
 [WARNING] Some dependencies are expected to be in 'provided' scope.
           Please ensure the following dependencies are set to '<scope>provided</scope>' in your POM:
-          * com.walmartlabs.concord:concord-sdk:2.17.0
+          * com.walmartlabs.concord:concord-sdk:2.19.0
 ```
 
 ## Benefits
