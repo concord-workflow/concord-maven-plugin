@@ -30,6 +30,6 @@ jobs:
       - name: Approve and Merge Pull Request
         run: |
           PR_NUMBER=${{ steps.cpr.outputs.pull-request-number }}
-          gh auth login --with-token <<< "${{ secrets.PAT_TOKEN }}"
+#          gh auth login --with-token <<< "${{ secrets.PAT_TOKEN }}"
           gh pr review --approve $PR_NUMBER --repo concord-workflow/concord-maven-plugin-ng
 #          gh pr merge $PR_NUMBER --squash --repo concord-workflow/concord-maven-plugin-ng
