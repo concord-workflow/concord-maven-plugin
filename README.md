@@ -23,7 +23,7 @@ Include the plugin in your project's `pom.xml` file:
             <artifactId>concord-maven-plugin-ng</artifactId>
             <version>0.0.15</version>
             <configuration>
-                <concordVersion>${concord.version}</concordVersion>
+                <concordVersion>0.0.24</concordVersion>
             </configuration>
             <executions>
                 <execution>
