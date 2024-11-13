@@ -16,7 +16,7 @@ jobs:
 
       - name: Update README.md
         run: |
-          sed -i "s/<LATEST_RELEASE_VERSION_HERE>/${{ github.event.release.tag_name }}/g" README.md
+          sed -i 's/<concordVersion>[^<]*<\/concordVersion>/<concordVersion>${{ github.event.release.tag_name }}<\/concordVersion>/g'
 
       - name: Create Pull Request
         id: cpr
