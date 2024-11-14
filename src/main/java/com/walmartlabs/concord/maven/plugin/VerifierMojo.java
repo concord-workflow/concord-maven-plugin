@@ -42,7 +42,7 @@ public class VerifierMojo extends AbstractMojo {
     @Parameter(property = "concordVersion", required = true)
     private String concordVersion;
 
-    @Parameter(property = "skip", defaultValue = "false")
+    @Parameter(property = "skipVerify", defaultValue = "false")
     private boolean skip;
 
     @Inject
