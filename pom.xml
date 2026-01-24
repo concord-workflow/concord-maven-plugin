@@ -12,7 +12,7 @@
     <name>Concord Maven plugin</name>
     <description>Plugin to validate project dependencies for Concord plugins</description>
 
-    <url>https://github.com/concord-workflow/concord-dependency-downloader</url>
+    <url>https://github.com/concord-workflow/concord-maven-plugin</url>
 
     <licenses>
         <license>
