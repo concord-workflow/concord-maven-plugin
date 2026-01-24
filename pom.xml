@@ -6,7 +6,7 @@
     <groupId>dev.ybrig.concord</groupId>
     <artifactId>concord-maven-plugin</artifactId>
 
-    <version>0.0.35</version>
+    <version>0.0.36-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>Concord Maven plugin</name>
