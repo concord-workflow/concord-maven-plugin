@@ -43,7 +43,7 @@ public class VerifierMojo extends AbstractMojo {
     private String concordVersion;
 
     @Parameter(property = "skipVerify", defaultValue = "false")
-    private boolean skip;
+    private boolean skipVerify;
 
     @Inject
     public VerifierMojo(DependencyResolver resolver, DependencyVerifier dependencyVerifier) {
@@ -53,7 +53,7 @@ public class VerifierMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException {
-        if (skip) {
+        if (skipVerify) {
             getLog().info("Skipping...");
             return;
         }
