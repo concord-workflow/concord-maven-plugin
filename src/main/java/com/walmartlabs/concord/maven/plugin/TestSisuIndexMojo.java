@@ -31,16 +31,20 @@ import java.io.File;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration"})
-@Mojo(name = "sisu-index", defaultPhase = LifecyclePhase.PROCESS_CLASSES,
-        requiresDependencyResolution = ResolutionScope.COMPILE, threadSafe = true)
-public class SisuIndexMojo extends AbstractSisuIndexMojo {
+@Mojo(name = "test-sisu-index", defaultPhase = LifecyclePhase.PROCESS_TEST_CLASSES,
+        requiresDependencyResolution = ResolutionScope.TEST, threadSafe = true)
+public class TestSisuIndexMojo extends AbstractSisuIndexMojo {
 
     @Inject
-    public SisuIndexMojo(BuildContext buildContext, MavenProject project) {
-        super(buildContext, project, outputDirectory(project), List.of(outputDirectory(project)));
+    public TestSisuIndexMojo(BuildContext buildContext, MavenProject project) {
+        super(buildContext, project, testOutputDirectory(project), List.of(testOutputDirectory(project), outputDirectory(project)));
     }
 
     private static File outputDirectory(MavenProject project) {
         return new File(project.getBuild().getOutputDirectory());
+    }
+
+    private static File testOutputDirectory(MavenProject project) {
+        return new File(project.getBuild().getTestOutputDirectory());
     }
 }
