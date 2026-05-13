@@ -21,7 +21,7 @@ Include the plugin in your project's `pom.xml` file:
         <plugin>
             <groupId>dev.ybrig.concord</groupId>
             <artifactId>concord-maven-plugin</artifactId>
-            <version>0.0.37</version>
+            <version>0.0.38</version>
             <configuration>
                 <concordVersion>2.19.0</concordVersion>
             </configuration>
@@ -36,6 +36,16 @@ Include the plugin in your project's `pom.xml` file:
         </plugin>
     </plugins>
 </build>
+```
+
+If your plugin tests define Sisu components in `src/test/java`, add the `test-sisu-index` goal as well:
+
+```xml
+<execution>
+    <goals>
+        <goal>test-sisu-index</goal>
+    </goals>
+</execution>
 ```
 
 ### Example Output
@@ -57,4 +67,3 @@ Using the Concord Dependency Validator plugin helps to:
 
 - **Maintain Consistency**: Ensures dependencies are aligned with Concord’s runtime environment requirements.
 - **Reduce Errors**: Minimizes runtime issues due to version mismatches or incorrectly scoped dependencies.
-
